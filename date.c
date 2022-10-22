@@ -550,6 +550,15 @@ static int set_time(long hour, long minute, long second, struct tm *tm)
 		tm->tm_sec = second;
 		return 0;
 	}
+
+	if (0 <= hour && hour <= 24 &&
+	    0 <= minute && minute < 60 &&
+	    0 <= second && second <= 60) {
+		tm->tm_hour = hour;
+		tm->tm_min = minute;
+		tm->tm_sec = second;
+		return 0;
+	}
 	return -1;
 }
 
